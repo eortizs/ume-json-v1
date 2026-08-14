@@ -8,6 +8,93 @@ Para documentación detallada ver:
 - [docs/EVIDENCE.md](docs/EVIDENCE.md) — runs reales, métricas
 - [docs/POSTMORTEM.md](docs/POSTMORTEM.md) — bugs y lecciones
 
+## v0.1.0 — 2026-08-14 · Multi-format support (XLSX, CSV, TSV, JSON)
+
+**Soportada la lectura de 4 formatos de tabla.** El script se renombra
+`process-xlsx.mjs` → `process-table.mjs` para reflejar la ampliación.
+`process-xlsx.mjs` queda como shim de backward-compat.
+
+**Novedades:**
+
+- **Format detection automático** por extensión: `.xlsx`, `.csv`, `.tsv`, `.json`.
+- **CSV parser** — vía `xlsx.read` con `type: 'string'`. Coerción de booleanos
+  `"TRUE"/"FALSE"` → `true/false` (CSV no preserva tipos nativos).
+- **TSV parser** — igual que CSV, con `FS: '\t'`.
+- **JSON parser** con 5 shapes soportadas:
+  - Array de objetos
+  - `{rows: [...]}` / `{data: [...]}` / `{records: [...]}` (con wrappers)
+  - Objeto individual (single record)
+- **Magic number check** actualizado: solo se aplica a XLSX (los demás
+  son texto plano).
+- **Sample files** en `samples/`:
+  - `taller-mecanico-ordenes.csv` (4.0 KB)
+  - `taller-mecanico-ordenes.json` (10.4 KB, array)
+  - `taller-mecanico-ordenes.rows.json` (11.1 KB, `{rows:[]}`)
+  - `taller-mecanico-ordenes.single.json` (0.5 KB, single object)
+- **Script generador** `samples/generate-csv-and-json.mjs` — regenera los
+  samples a partir del XLSX.
+- **Shim** `process-xlsx.mjs` — delega a `process-table.mjs`. Se eliminará
+  en v0.2.0.
+- **Documentación** `docs/FORMATS.md` — referencia de los 4 formatos (tipos,
+  coerciones, shapes, limitaciones).
+
+**Validación:**
+
+| Formato | Filas | Resultado | Provider LLM | Duración |
+|---|---|---|---|---|
+| XLSX | 18 | 18/18 OK | OpenRouter `~deepseek-v4-flash` | 277.4s |
+| CSV | 3 | 3/3 OK | OpenRouter `~deepseek-v4-flash` | 23.7s |
+| JSON (single) | 1 | 1/1 OK | OpenRouter `~deepseek-v4-flash` | 46.2s |
+
+**Bugs encontrados y corregidos en v0.1.0:**
+
+1. **Typo `FINIZE_KEY`** (en vez de `FINALIZE_KEY`) en el header
+   `Authorization` de `fetch /finalize`. El error era `FINIZE_KEY is not
+   defined` capturado por `finalize_fail`. Fixed: variable correcta.
+
+2. **CSV booleans como strings** — `xlsx.read` con `raw: false` entrega
+   `TRUE`/`FALSE` como strings. Solución: `coerceCsvBooleans()` corre
+   como post-proceso, matchea `^(?i:true|false)$` → boolean nativo.
+
+**Output del LLM (deepseek) con CSV:**
+
+```json
+{
+  "ok": true,
+  "data": {
+    "id": "01a00156-4d04-77da-b517-5c63e049a6b3",
+    "entityName": "OrdenServicio",
+    "dynamicProperties": {
+      "idOrden": "OT-2026-0001",
+      "clienteNombre": "José Hernández",
+      "pagado": false,           // ← boolean, no string "FALSE"
+      "costoEstimado": 4500,
+      ...
+    },
+    "lifecycle": {
+      "createdAt": "2026-08-14T17:33:48.164Z",
+      "updatedAt": "2026-08-14T17:33:48.164Z",
+      "version": 1
+    }
+  }
+}
+```
+
+**No se cambiaron:**
+
+- `finalize-api/server.mjs` — mismo comportamiento
+- `process-table.mjs` mantiene misma API HTTP al `/finalize`
+- Tag v0.0.1 sigue siendo la última release de código con un solo formato
+
+**Pendientes para v0.2.0:**
+
+- [ ] Modo `--deterministic` + `--hybrid`
+- [ ] Idempotencia (`Idempotency-Key` header)
+- [ ] Tests Jest con XLSX/CSV/JSON sintéticos
+- [ ] Soporte NDJSON (un JSON por línea)
+- [ ] Soporte `.xls` legacy (binary OLE2)
+- [ ] Soporte `.xlsx` multi-hoja
+
 ## v0.0.2 — 2026-08-14 · Documentation kit
 
 **Sin cambios de código.** Solo documentación.

@@ -1,0 +1,18 @@
+{
+  "ID_Orden": "OT-2026-0001",
+  "Fecha_Ingreso": "2026-07-15T00:00:00.000Z",
+  "Fecha_Entrega": null,
+  "Cliente_Nombre": "José Hernández",
+  "Cliente_Teléfono": "811-234-5678",
+  "Vehiculo_Marca": "Toyota",
+  "Vehiculo_Modelo": "Corolla 2020",
+  "Vehiculo_Placas": "ABC-123-D",
+  "Vehiculo_Kilometraje": 45000,
+  "Tipo_Servicio": "Afinación mayor",
+  "Mecánico_Asignado": "Roberto García",
+  "Costo_Estimado": 4500,
+  "Costo_Final": null,
+  "Estado": "En proceso",
+  "Notas": "Cliente reporta ruido en el motor al frenar",
+  "Pagado": false
+}

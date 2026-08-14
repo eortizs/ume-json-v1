@@ -1,0 +1,155 @@
+{
+  "summary": {
+    "file": "samples/taller-mecanico-ordenes.csv",
+    "format": "csv",
+    "file_hash": "ac675259f9fa1a02",
+    "file_bytes": 4051,
+    "dry_run": false,
+    "total_rows": 18,
+    "processed": 3,
+    "succeeded": 0,
+    "failed": 3,
+    "duration_ms": 505554
+  },
+  "entities": [],
+  "failures": [
+    {
+      "idx": 0,
+      "status": "finalize_fail",
+      "umeJson": null,
+      "error": "FINIZE_KEY is not defined"
+    },
+    {
+      "idx": 1,
+      "status": "finalize_fail",
+      "umeJson": {
+        "id": "RESERVED_FOR_SYSTEM",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0002",
+          "fechaIngreso": "2026-07-18T00:00:00.000Z",
+          "fechaEntrega": "2026-07-22T00:00:00.000Z",
+          "clienteNombre": "María Pérez López",
+          "clienteTelefono": "812-987-6543",
+          "vehiculoMarca": "Nissan",
+          "vehiculoModelo": "Versa 2019",
+          "vehiculoPlacas": "XYZ-987-F",
+          "vehiculoKilometraje": 62300,
+          "tipoServicio": "Cambio de frenos delanteros",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 2800,
+          "costoFinal": 3150.5,
+          "estado": "Entregado",
+          "notas": "Se reemplazaron balatas y discos",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "RESERVED_FOR_SYSTEM",
+          "updatedAt": "RESERVED_FOR_SYSTEM",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "812-987-6543",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "XYZ-987-F",
+            "type": "many-to-one",
+            "context": "para_vehiculo",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "RESERVED_FOR_SYSTEM",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0002\n**Resumen:** Orden de trabajo para mantenimiento automotriz del cliente María Pérez López.\n**Datos Clave:**\n- **Cliente:** María Pérez López\n- **Vehículo:** Nissan Versa 2019 (placas XYZ-987-F)\n- **Servicio:** Cambio de frenos delanteros\n- **Costo Final:** $3,150.50\n- **Estado:** Entregado\n**Estado Actual:** active - Procesado correctamente desde origen."
+      },
+      "error": "FINIZE_KEY is not defined"
+    },
+    {
+      "idx": 2,
+      "status": "finalize_fail",
+      "umeJson": {
+        "id": "RESERVED_FOR_SYSTEM",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0003",
+          "fechaIngreso": "2026-07-20T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Carlos Ramírez",
+          "clienteTelefono": "811-555-0102",
+          "vehiculoMarca": "Volkswagen",
+          "vehiculoModelo": "Jetta 2018",
+          "vehiculoPlacas": "MTY-456-A",
+          "vehiculoKilometraje": 88700,
+          "tipoServicio": "Diagnóstico electrónico",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 800,
+          "costoFinal": null,
+          "estado": "Pendiente repuestos",
+          "notas": "Falla en sensor MAP; repuesto no disponible en stock",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "RESERVED_FOR_SYSTEM",
+          "updatedAt": "RESERVED_FOR_SYSTEM",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Carlos Ramírez",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "MTY-456-A",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Roberto García",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "validation_required",
+          "statusLog": [
+            {
+              "status": "validation_required",
+              "timestamp": "RESERVED_FOR_SYSTEM",
+              "reason": "Campos críticos vacíos (fechaEntrega, costoFinal) y estado pendiente de repuestos; requiere validación."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0003\n**Resumen:** Orden de trabajo para diagnóstico electrónico de vehículo Volkswagen Jetta 2018.\n\n**Datos Clave:**\n- **Cliente:** Carlos Ramírez\n- **Vehículo:** Volkswagen Jetta 2018 (Placas: MTY-456-A)\n- **Servicio:** Diagnóstico electrónico\n- **Costo Estimado:** $800\n- **Estado:** Pendiente repuestos\n\n**Estado Actual:** validation_required - Campos críticos vacíos (fechaEntrega, costoFinal) y estado pendiente de repuestos; requiere validación."
+      },
+      "error": "FINIZE_KEY is not defined"
+    }
+  ]
+}

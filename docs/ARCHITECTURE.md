@@ -69,11 +69,17 @@ Esta separación cumple dos objetivos:
 
 Responsabilidades:
 
-1. **Validar** el archivo: extensión XLSX, magic number ZIP, tamaño ≤ 50 MB,
+1. **Validar** el archivo: extensión (`xlsx`, `csv`, `tsv`, `json`),
+   magic number si aplica (ZIP para XLSX), tamaño ≤ 50 MB,
    filas ≤ 100 000, columnas ≤ 50 (warning).
-2. **Parsear** con `xlsx` package → `sheet_to_json({ raw: true, cellDates: true, defval: null })`.
-   - `raw: true` — números como `number`, fechas como `Date`
-   - `defval: null` — celdas vacías como `null` (no `undefined`)
+2. **Parsear** según formato:
+   - **XLSX**: `XLSX.read(buf, { type: 'buffer', cellDates: true })` →
+     `sheet_to_json({ raw: true, defval: null, blankrows: false })`.
+     Tipos nativos: `number`, `Date`, `boolean`, `null`.
+   - **CSV/TSV**: `XLSX.read(buf.toString(), { type: 'string', raw: false })` →
+     `sheet_to_json` → coerción de booleanos vía `coerceCsvBooleans`.
+   - **JSON**: `JSON.parse` → shape detection (array, `{rows:[]}`, `{data:[]}`,
+     `{records:[]}`, objeto único). Tipos nativos preservados.
 3. **Orquestar** con `p-limit` (concurrencia 5) y `Promise.allSettled`:
    - Cada fila pasa por 3 puntos de fallo posibles → ninguna fila aborta el batch.
 4. **Para cada fila**:
@@ -236,9 +242,28 @@ Content-Type: application/json
 
 ---
 
-## 4. Modelo de ejecución
+## 4. Formatos soportados
 
-### 4.1 Pipeline (camino A — LLM-por-fila)
+Ver [FORMATS.md](./FORMATS.md) para detalle completo.
+
+| Formato | Extensión | Tipos nativos | Implementación |
+|---|---|---|---|
+| XLSX | `.xlsx` | ✓ (numbers, dates, booleans, nulls) | `xlsx.read` con `type: 'buffer'` |
+| CSV | `.csv` | parcial (booleans coerce) | `xlsx.read` con `type: 'string'` + `coerceCsvBooleans` |
+| TSV | `.tsv` | parcial (booleans coerce) | idem con `FS: '\t'` |
+| JSON | `.json` | ✓ | `JSON.parse` + shape detection |
+
+**Detección:** por extensión (no por contenido). El magic number check solo
+se aplica a XLSX (los demás son texto plano).
+
+**Shapes JSON soportadas** (en orden de prioridad):
+1. Array de objetos
+2. `{rows: [...]}` / `{data: [...]}` / `{records: [...]}`
+3. Objeto individual (single record)
+
+## 5. Modelo de ejecución
+
+### 5.1 Pipeline (camino A — LLM-por-fila)
 
 ```
 XLSX

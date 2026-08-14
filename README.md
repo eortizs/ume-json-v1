@@ -3,8 +3,8 @@
 > Pipeline canónico para transformar registros crudos (XLSX, CSV, JSON, API)
 > en entidades `umeJSON` listas para persistir en una base de datos.
 
-**Última release:** `v0.0.1` · **Estado:** real-mode end-to-end validado
-(18/18 entidades procesadas en 277.4s, 0 fallos).
+**Última release:** `v0.1.0` · **Estado:** multi-format end-to-end validado
+(XLSX 18/18, CSV 3/3, JSON 1/1, 0 fallos).
 
 ---
 
@@ -26,7 +26,7 @@ cd ..
 cd process-xlsx
 npm install
 cp .env.example .env       # editar LLM keys + finalize URL
-node process-xlsx.mjs samples/taller-mecanico-ordenes.xlsx \
+node process-table.mjs samples/taller-mecanico-ordenes.xlsx \
   --out samples/output-entities-real.json \
   --md-out samples/output-summary-real.md
 
@@ -37,7 +37,7 @@ cat samples/output-summary-real.md
 **Para una validación rápida sin gastar LLM:**
 
 ```bash
-node process-xlsx.mjs samples/taller-mecanico-ordenes.xlsx --dry-run --limit 5
+node process-table.mjs samples/taller-mecanico-ordenes.xlsx --dry-run --limit 5
 ```
 
 ---
@@ -79,7 +79,8 @@ filas sin colisiones.
 | Pieza | Ubicación | Qué hace |
 |---|---|---|
 | Skill `umejson` | Workshop OpenClaw (`umejson-20260813-554b7c62e0`) | Spec de transformación: 7 pasos, few-shot, rúbricas |
-| `process-xlsx.mjs` | `process-xlsx/` | Pipeline: parse → LLM → finalize → output |
+| `process-table.mjs` | `process-xlsx/` | Pipeline: parse → LLM → finalize → output. Soporta XLSX, CSV, TSV, JSON |
+| `process-xlsx.mjs` | `process-xlsx/` | Shim de backward-compat (deprecado, eliminar en v0.2.0) |
 | `umejson-spec.md` | `process-xlsx/` | Copia local de la skill, usada como `system` prompt |
 | `finalize-api/server.mjs` | `finalize-api/` | Validación Ajv + UUID v7 + ISO 8601 injection |
 | Sample `taller-mecanico-ordenes.xlsx` | `process-xlsx/samples/` | 18 órdenes de taller con acentos, nulls, dates, booleans |
@@ -93,19 +94,28 @@ filas sin colisiones.
 
 ---
 
-## Estado actual (v0.0.1)
+## Estado actual (v0.1.0)
 
-**Validación real:** 18/18 entidades procesadas, 0 fallos.
+**Validación real:** procesado en 3 formatos end-to-end.
 
-| Métrica | Valor |
-|---|---|
-| Filas | 18 |
-| Modo | real (LLM + /finalize) |
-| LLM | OpenRouter `~deepseek/deepseek-v4-flash-latest` (free) |
-| Concurrencia | 5 |
-| Duración | 277.4s (~10.8s/fila) |
-| Entity types inferidos | `OrdenTrabajo`, `OrdenServicio`, `OrdenReparacion` |
-| Cost | $0 (free tier) |
+| Formato | Filas | OK | Fail | Provider LLM | Duración |
+|---|---|---|---|---|---|
+| XLSX | 18 | 18 | 0 | OpenRouter `~deepseek-v4-flash` | 277.4s |
+| CSV | 3 | 3 | 0 | OpenRouter `~deepseek-v4-flash` | 23.7s |
+| JSON (single) | 1 | 1 | 0 | OpenRouter `~deepseek-v4-flash` | 46.2s |
+
+**Lo que funciona:**
+
+- ✓ Lectura XLSX / CSV / TSV / JSON (4 formatos)
+- ✓ Detección automática por extensión
+- ✓ JSON: 5 shapes soportadas (array, `{rows:[]}`, `{data:[]}`, `{records:[]}`, objeto único)
+- ✓ CSV: coerción de booleanos `"TRUE"/"FALSE"` → `true/false`
+- ✓ Parseo con tipos nativos (XLSX + JSON)
+- ✓ Pipeline LLM con concurrencia 5 + Promise.allSettled (ninguna fila aborta)
+- ✓ `/finalize` API con Bearer auth + Ajv + uuid v7 + ISO 8601 + sentinel validation
+- ✓ 3 tipos de failure reportados por separado: `diagnostic`, `normalize_fail`, `finalize_fail`
+- ✓ Output JSON (entidades DB-ready) + Markdown resumen
+- ✓ LLM agnóstico al proveedor vía `LLM_BASE_URL` (OpenAI, OpenRouter, Groq, Gemini)
 
 **Lo que funciona:**
 
@@ -129,8 +139,10 @@ filas sin colisiones.
 ## CLI del pipeline
 
 ```
-node process-xlsx.mjs <archivo.xlsx> [opciones]
+node process-table.mjs <archivo> [opciones]
 ```
+
+Formatos soportados: `.xlsx`, `.csv`, `.tsv`, `.json` (detección por extensión).
 
 | Flag | Descripción |
 |---|---|
@@ -141,18 +153,29 @@ node process-xlsx.mjs <archivo.xlsx> [opciones]
 | `--json-only` | Solo imprime JSON, no Markdown. |
 | `--md-only` | Solo imprime Markdown, no JSON. |
 
-**Ejemplo end-to-end:**
+**Ejemplo end-to-end (cualquier formato):**
 
 ```bash
-node process-xlsx.mjs samples/taller-mecanico-ordenes.xlsx \
+# XLSX
+node process-table.mjs samples/taller-mecanico-ordenes.xlsx \
   --out samples/output-entities-real.json \
   --md-out samples/output-summary-real.md
+
+# CSV
+node process-table.mjs samples/taller-mecanico-ordenes.csv \
+  --out samples/csv-output-entities-real.json \
+  --md-out samples/csv-output-summary-real.md
+
+# JSON
+node process-table.mjs samples/taller-mecanico-ordenes.json \
+  --out samples/json-output-entities-real.json \
+  --md-out samples/json-output-summary-real.md
 ```
 
 Output:
 ```
-[start] archivo=samples/taller-mecanico-ordenes.xlsx hash=e3215c6fa3de0ea6 dryRun=false
-[parse] 18 filas (procesando 18)
+[parse] formato=xlsx 18 filas (27.0 KB) hash=e3215c6fa3de0ea6
+[parse] procesando 18 filas (concurrency=5)
 [done] 18/18 exitosas en 277.4s
 [write] entidades → samples/output-entities-real.json
 [write] resumen  → samples/output-summary-real.md

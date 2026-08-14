@@ -1,15 +1,16 @@
 {
-  "name": "process-xlsx",
+  "name": "process-table",
   "version": "0.1.0",
-  "description": "Pipeline XLSX → umeJSON → /finalize → entidades listas para DB",
+  "description": "Pipeline tabla (XLSX/CSV/TSV/JSON) → umeJSON → /finalize → entidades listas para DB",
   "type": "module",
   "private": true,
   "bin": {
+    "process-table": "./process-table.mjs",
     "process-xlsx": "./process-xlsx.mjs"
   },
   "scripts": {
-    "start": "node process-xlsx.mjs",
-    "dry": "node process-xlsx.mjs --dry-run"
+    "start": "node process-table.mjs",
+    "dry": "node process-table.mjs --dry-run"
   },
   "engines": {
     "node": ">=18"

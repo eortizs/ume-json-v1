@@ -1,0 +1,74 @@
+{
+  "summary": {
+    "file": "samples/taller-mecanico-ordenes.single.json",
+    "format": "json",
+    "file_hash": "70983c68a018142b",
+    "file_bytes": 551,
+    "dry_run": false,
+    "total_rows": 1,
+    "processed": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "duration_ms": 46179
+  },
+  "entities": [
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0015a-2113-7389-b040-db20c9bb809e",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0001",
+          "fechaIngreso": "2026-07-15T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "José Hernández",
+          "clienteTelefono": "811-234-5678",
+          "vehiculoMarca": "Toyota",
+          "vehiculoModelo": "Corolla 2020",
+          "vehiculoPlacas": "ABC-123-D",
+          "vehiculoKilometraje": 45000,
+          "tipoServicio": "Afinación mayor",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 4500,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Cliente reporta ruido en el motor al frenar",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:37:59.059Z",
+          "updatedAt": "2026-08-14T17:37:59.059Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "José Hernández",
+            "type": "many-to-one",
+            "context": "solicitado_por",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Roberto García",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "validation_required",
+          "statusLog": [
+            {
+              "status": "validation_required",
+              "timestamp": "2026-08-14T17:37:59.059Z",
+              "reason": "Faltan campos críticos como costoFinal y fechaEntrega; requiere validación antes de activarse."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0001\n**Resumen:** Orden de trabajo para servicio de afinación mayor de un vehículo Toyota Corolla 2020.\n\n**Datos Clave:**\n- **Vehículo:** Toyota Corolla 2020, placas ABC-123-D\n- **Cliente:** José Hernández\n- **Mecánico:** Roberto García\n- **Costo Estimado:** $4500\n- **Estado:** En proceso\n\n**Estado Actual:** validation_required - Faltan campos críticos como costoFinal y fechaEntrega."
+      }
+    }
+  ],
+  "failures": []
+}
