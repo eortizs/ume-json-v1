@@ -1,0 +1,22 @@
+{
+  "name": "process-xlsx",
+  "version": "0.1.0",
+  "description": "Pipeline XLSX → umeJSON → /finalize → entidades listas para DB",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "process-xlsx": "./process-xlsx.mjs"
+  },
+  "scripts": {
+    "start": "node process-xlsx.mjs",
+    "dry": "node process-xlsx.mjs --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "p-limit": "^3.1.0",
+    "xlsx": "^0.18.5"
+  }
+}
