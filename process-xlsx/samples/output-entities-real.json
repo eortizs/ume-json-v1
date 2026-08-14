@@ -1,0 +1,1030 @@
+{
+  "summary": {
+    "file": "samples/taller-mecanico-ordenes.xlsx",
+    "file_hash": "e3215c6fa3de0ea6",
+    "dry_run": false,
+    "total_rows": 18,
+    "processed": 18,
+    "succeeded": 18,
+    "failed": 0,
+    "duration_ms": 277362
+  },
+  "entities": [
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013a-a45a-74ca-b371-acbb115095c1",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0001",
+          "fechaIngreso": "2026-07-15T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "José Hernández",
+          "clienteTelefono": "811-234-5678",
+          "vehiculoMarca": "Toyota",
+          "vehiculoModelo": "Corolla 2020",
+          "vehiculoPlacas": "ABC-123-D",
+          "vehiculoKilometraje": 45000,
+          "tipoServicio": "Afinación mayor",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 4500,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Cliente reporta ruido en el motor al frenar",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:03:35.514Z",
+          "updatedAt": "2026-08-14T17:03:35.514Z",
+          "version": 1
+        },
+        "relations": [],
+        "state": {
+          "current": "validation_required",
+          "statusLog": [
+            {
+              "status": "validation_required",
+              "timestamp": "2026-08-14T17:03:35.514Z",
+              "reason": "Campos numéricos críticos (costoFinal) están vacíos o nulos, requiriendo validación."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0001\n**Resumen:** Orden de trabajo para servicio de afinación mayor de un vehículo Toyota Corolla 2020.\n\n**Datos Clave:**\n- **Cliente:** José Hernández (Tel: 811-234-5678)\n- **Vehículo:** Toyota Corolla 2020, placas ABC-123-D\n- **Servicio:** Afinación mayor\n- **Costo Estimado:** $4500\n- **Estado:** En proceso\n\n**Estado Actual:** validation_required - Campos numéricos críticos (costoFinal) están vacíos o nulos, requiriendo validación."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013a-2eca-7698-85b9-a6100e8fb855",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0002",
+          "fechaIngreso": "2026-07-18T00:00:00.000Z",
+          "fechaEntrega": "2026-07-22T00:00:00.000Z",
+          "clienteNombre": "María Pérez López",
+          "clienteTelefono": "812-987-6543",
+          "vehiculoMarca": "Nissan",
+          "vehiculoModelo": "Versa 2019",
+          "vehiculoPlacas": "XYZ-987-F",
+          "vehiculoKilometraje": 62300,
+          "tipoServicio": "Cambio de frenos delanteros",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 2800,
+          "costoFinal": 3150.5,
+          "estado": "Entregado",
+          "notas": "Se reemplazaron balatas y discos",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:03:05.418Z",
+          "updatedAt": "2026-08-14T17:03:05.418Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "María Pérez López",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "XYZ-987-F",
+            "type": "many-to-one",
+            "context": "vehiculo_atendido",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:03:05.418Z",
+              "reason": "Entidad creada exitosamente a partir del registro de orden de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0002\n**Resumen:** Orden de servicio de taller mecánico para vehículo Nissan Versa 2019, con cambio de frenos delanteros.\n\n**Datos Clave:**\n- **Cliente:** María Pérez López (812-987-6543)\n- **Vehículo:** Nissan Versa 2019 - XYZ-987-F\n- **Servicio:** Cambio de frenos delanteros\n- **Costo Final:** $3150.5\n- **Estado:** Entregado / Pagado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013a-2068-721d-9ed3-e63c8c206980",
+        "entityName": "OrdenReparacion",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0003",
+          "fechaIngreso": "2026-07-20T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Carlos Ramírez",
+          "clienteTelefono": "811-555-0102",
+          "vehiculoMarca": "Volkswagen",
+          "vehiculoModelo": "Jetta 2018",
+          "vehiculoPlacas": "MTY-456-A",
+          "vehiculoKilometraje": 88700,
+          "tipoServicio": "Diagnóstico electrónico",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 800,
+          "costoFinal": null,
+          "estado": "Pendiente repuestos",
+          "notas": "Falla en sensor MAP; repuesto no disponible en stock",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:03:01.736Z",
+          "updatedAt": "2026-08-14T17:03:01.736Z",
+          "version": 1
+        },
+        "relations": [],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:03:01.736Z",
+              "reason": "Orden de reparación ingresada exitosamente con estado Pendiente repuestos."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenReparacion - OT-2026-0003\n**Resumen:** Orden de reparación para vehículo Volkswagen Jetta 2018.\n\n**Datos Clave:**\n- **Cliente:** Carlos Ramírez\n- **Vehículo:** Jetta 2018 (Placas: MTY-456-A)\n- **Servicio:** Diagnóstico electrónico\n- **Costo Estimado:** $800\n- **Estado:** Pendiente repuestos\n\n**Estado Actual:** active - Orden de reparación ingresada exitosamente con estado Pendiente repuestos."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013a-c6a0-703d-a8b9-10d76b848799",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0004",
+          "fechaIngreso": "2026-07-22T00:00:00.000Z",
+          "fechaEntrega": "2026-07-23T00:00:00.000Z",
+          "clienteNombre": "Ana Gutiérrez",
+          "clienteTelefono": "811-444-3322",
+          "vehiculoMarca": "Honda",
+          "vehiculoModelo": "Civic 2021",
+          "vehiculoPlacas": "JCV-202-G",
+          "vehiculoKilometraje": 32100,
+          "tipoServicio": "Cambio de aceite y filtros",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 1200,
+          "costoFinal": 1150,
+          "estado": "Entregado",
+          "notas": null,
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:03:44.288Z",
+          "updatedAt": "2026-08-14T17:03:44.288Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "811-444-3322",
+            "type": "many-to-one",
+            "context": "cliente_asociado",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "JCV-202-G",
+            "type": "many-to-one",
+            "context": "vehiculo_atendido",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:03:44.288Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de la orden de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0004\n**Resumen:** Orden de servicio para cambio de aceite y filtros de vehículo Honda Civic 2021.\n\n**Datos Clave:**\n- **Cliente:** Ana Gutiérrez (811-444-3322)\n- **Vehículo:** Honda Civic 2021 (JCV-202-G)\n- **Servicio:** Cambio de aceite y filtros\n- **Costo Final:** $1150\n- **Mecánico:** Luis Mendoza\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013c-e3d8-779a-85ae-b8b81831b024",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0005",
+          "fechaIngreso": "2026-07-25T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Pedro Martínez",
+          "clienteTelefono": "811-777-8899",
+          "vehiculoMarca": "Ford",
+          "vehiculoModelo": "F-150 2017",
+          "vehiculoPlacas": "FOR-789-H",
+          "vehiculoKilometraje": 145000,
+          "tipoServicio": "Reparación de transmisión",
+          "mecanicoAsignado": "Andrés Torres",
+          "costoEstimado": 18500,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Trabajo mayor, se requieren 5 días adicionales",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:06:02.840Z",
+          "updatedAt": "2026-08-14T17:06:02.840Z",
+          "version": 1
+        },
+        "relations": [],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:06:02.840Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de datos."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0005\n**Resumen:** Orden de servicio para reparación de transmisión del vehículo Ford F-150 2017.\n**Datos Clave:**\n- **Cliente:** Pedro Martínez\n- **Vehículo:** Ford F-150 2017 (Placas FOR-789-H)\n- **Tipo de Servicio:** Reparación de transmisión\n- **Costo Estimado:** 18500\n- **Estado:** En proceso\n**Estado Actual:** active - Entidad creada exitosamente a partir de la importación de datos."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013a-ddd5-76d8-bf48-c01061e5be76",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0006",
+          "fechaIngreso": "2026-07-26T00:00:00.000Z",
+          "fechaEntrega": "2026-07-26T00:00:00.000Z",
+          "clienteNombre": "Lucía Sánchez",
+          "clienteTelefono": "811-222-1100",
+          "vehiculoMarca": "Mazda",
+          "vehiculoModelo": "CX-5 2022",
+          "vehiculoPlacas": "MZD-321-J",
+          "vehiculoKilometraje": 28900,
+          "tipoServicio": "Alineación y balanceo",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 950,
+          "costoFinal": 950,
+          "estado": "Entregado",
+          "notas": "Servicio express mismo día",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:03:50.229Z",
+          "updatedAt": "2026-08-14T17:03:50.229Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "MZD-321-J",
+            "type": "many-to-one",
+            "context": "referente_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:03:50.229Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de la orden de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0006\n**Resumen:** Orden de servicio de alineación y balanceo para vehículo Mazda CX-5.\n\n**Datos Clave:**\n- **Cliente:** Lucía Sánchez\n- **Vehículo:** Mazda CX-5 2022 (Placas MZD-321-J)\n- **Servicio:** Alineación y balanceo\n- **Costo:** $950 (pagado)\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-c1fd-779b-9493-e79c2f85fbcf",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0007",
+          "fechaIngreso": "2026-07-28T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Roberto Ñuñez",
+          "clienteTelefono": "811-666-5544",
+          "vehiculoMarca": "Chevrolet",
+          "vehiculoModelo": "Aveo 2016",
+          "vehiculoPlacas": "CHV-654-K",
+          "vehiculoKilometraje": 110500,
+          "tipoServicio": "Reparación de clutch",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 6800,
+          "costoFinal": null,
+          "estado": "Pendiente repuestos",
+          "notas": "Kit de clutch pedido; ETA 3 días",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:48.637Z",
+          "updatedAt": "2026-08-14T17:04:48.637Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "811-666-5544",
+            "type": "many-to-one",
+            "context": "cliente_asociado",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "CHV-654-K",
+            "type": "many-to-one",
+            "context": "vehiculo_atendido",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "validation_required",
+          "statusLog": [
+            {
+              "status": "validation_required",
+              "timestamp": "2026-08-14T17:04:48.637Z",
+              "reason": "Campos numéricos críticos (costoFinal) pendientes de completar; la orden está en estado 'Pendiente repuestos'."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0007\n**Resumen:** Orden de trabajo para reparación de clutch del vehículo Chevrolet Aveo 2016, asignada a Luis Mendoza.\n\n**Datos Clave:**\n- **Cliente:** Roberto Ñuñez (811-666-5544)\n- **Vehículo:** Chevrolet Aveo 2016 (CHV-654-K)\n- **Servicio:** Reparación de clutch\n- **Costo Estimado:** $6800\n- **Estado:** Pendiente repuestos\n\n**Estado Actual:** validation_required - Costo final pendiente de completar."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-afcc-766b-9180-852682d6c93a",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0008",
+          "fechaIngreso": "2026-07-29T00:00:00.000Z",
+          "fechaEntrega": "2026-07-30T00:00:00.000Z",
+          "clienteNombre": "Sofía Mendoza",
+          "clienteTelefono": "811-333-9988",
+          "vehiculoMarca": "Hyundai",
+          "vehiculoModelo": "Tucson 2020",
+          "vehiculoPlacas": "HYU-111-L",
+          "vehiculoKilometraje": 54000,
+          "tipoServicio": "Cambio de batería",
+          "mecanicoAsignado": "Andrés Torres",
+          "costoEstimado": 2400,
+          "costoFinal": 2400,
+          "estado": "Entregado",
+          "notas": "Batería vieja en mal estado",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:43.980Z",
+          "updatedAt": "2026-08-14T17:04:43.980Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "811-333-9988",
+            "type": "many-to-one",
+            "context": "realizada_por",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "HYU-111-L",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Andrés Torres",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:04:43.980Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de la orden de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0008\n**Resumen:** Orden de servicio para cambio de batería de vehículo Hyundai Tucson.\n\n**Datos Clave:**\n- **Cliente:** Sofía Mendoza\n- **Vehículo:** Hyundai Tucson 2020 (Placas: HYU-111-L)\n- **Servicio:** Cambio de batería\n- **Costo:** $2400 (Pagado: Sí)\n- **Mecánico:** Andrés Torres\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-1ac0-728b-a39d-437b0d44be0e",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0009",
+          "fechaIngreso": "2026-07-30T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Diego Vázquez",
+          "clienteTelefono": "811-999-7766",
+          "vehiculoMarca": "Kia",
+          "vehiculoModelo": "Rio 2019",
+          "vehiculoPlacas": "KIA-222-M",
+          "vehiculoKilometraje": 78200,
+          "tipoServicio": "Servicio de frenos completos",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 4200,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Frenos traseros y delanteros",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:05.824Z",
+          "updatedAt": "2026-08-14T17:04:05.824Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "KIA-222-M",
+            "type": "many-to-one",
+            "context": "reparacion_de",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:04:05.824Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de órdenes de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0009\n**Resumen:** Orden de servicio para vehículo Kia Rio 2019, cliente Diego Vázquez.\n**Datos Clave:**\n- *Vehículo*: Kia Rio 2019, Placas KIA-222-M\n- *Cliente*: Diego Vázquez - 811-999-7766\n- *Tipo Servicio*: Servicio de frenos completos\n- *Costo Estimado*: $4,200.00\n- *Estado*: En proceso\n**Estado Actual:** active - Entidad creada exitosamente a partir de la importación de órdenes de servicio."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-4217-724e-8678-1605468ea142",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0010",
+          "fechaIngreso": "2026-08-01T00:00:00.000Z",
+          "fechaEntrega": "2026-08-02T00:00:00.000Z",
+          "clienteNombre": "Patricia Ríos",
+          "clienteTelefono": "811-111-2233",
+          "vehiculoMarca": "Toyota",
+          "vehiculoModelo": "Hilux 2021",
+          "vehiculoPlacas": "HIL-333-N",
+          "vehiculoKilometraje": 41000,
+          "tipoServicio": "Revisión pre-viaje",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 1800,
+          "costoFinal": 1950,
+          "estado": "Entregado",
+          "notas": "Cliente viaja a Chihuahua el lunes",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:15.895Z",
+          "updatedAt": "2026-08-14T17:04:15.895Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Patricia Ríos",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "HIL-333-N",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:04:15.895Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0010\n**Resumen:** Orden de trabajo para revisión pre-viaje de vehículo Toyota Hilux.\n\n**Datos Clave:**\n- **Cliente:** Patricia Ríos\n- **Vehículo:** Toyota Hilux 2021 (Placas: HIL-333-N)\n- **Servicio:** Revisión pre-viaje\n- **Costo Final:** $1950.00\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-747d-779e-9999-01fcd30c5c62",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0011",
+          "fechaIngreso": "2026-08-02T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Fernando Ávila",
+          "clienteTelefono": "811-888-5544",
+          "vehiculoMarca": "Nissan",
+          "vehiculoModelo": "Frontier 2020",
+          "vehiculoPlacas": "FRT-444-O",
+          "vehiculoKilometraje": 96500,
+          "tipoServicio": "Reparación de suspensión",
+          "mecanicoAsignado": "Andrés Torres",
+          "costoEstimado": 5500,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Amortiguadores y resortes",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:28.797Z",
+          "updatedAt": "2026-08-14T17:04:28.797Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Fernando Ávila",
+            "type": "many-to-one",
+            "context": "solicitado_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "FRT-444-O",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Andrés Torres",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:04:28.797Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0011\n**Resumen:** Orden de trabajo para reparación de suspensión de vehículo Nissan Frontier.\n\n**Datos Clave:**\n- **Cliente:** Fernando Ávila (Tel: 811-888-5544)\n- **Vehículo:** Nissan Frontier 2020 (Placas: FRT-444-O)\n- **Servicio:** Reparación de suspensión\n- **Costo Estimado:** $5500.00\n- **Estado:** En proceso\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-c3b5-77ce-8358-5a44cffbbfa9",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0012",
+          "fechaIngreso": "2026-08-03T00:00:00.000Z",
+          "fechaEntrega": "2026-08-03T00:00:00.000Z",
+          "clienteNombre": "Gabriela Ortega",
+          "clienteTelefono": "811-444-6677",
+          "vehiculoMarca": "Honda",
+          "vehiculoModelo": "CR-V 2019",
+          "vehiculoPlacas": "CRV-555-P",
+          "vehiculoKilometraje": 67100,
+          "tipoServicio": "Limpieza de inyectores",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 1600,
+          "costoFinal": 1600,
+          "estado": "Entregado",
+          "notas": null,
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:04:49.077Z",
+          "updatedAt": "2026-08-14T17:04:49.077Z",
+          "version": 1
+        },
+        "relations": [],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:04:49.077Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de servicio."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0012\n**Resumen:** Orden de servicio para limpieza de inyectores de vehículo Honda CR-V 2019.\n\n**Datos Clave:**\n- **Cliente:** Gabriela Ortega (Tel: 811-444-6677)\n- **Vehículo:** Honda CR-V 2019, placas CRV-555-P\n- **Servicio:** Limpieza de inyectores\n- **Costo Final:** $1600\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013e-0474-74ec-80cd-b7e2e27cec1b",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0013",
+          "fechaIngreso": "2026-08-04T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Miguel Ángel Hernández",
+          "clienteTelefono": "811-333-4455",
+          "vehiculoMarca": "Volkswagen",
+          "vehiculoModelo": "Vento 2017",
+          "vehiculoPlacas": "VNT-666-Q",
+          "vehiculoKilometraje": 132400,
+          "tipoServicio": "Cambio de banda de accesorios",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 2100,
+          "costoFinal": null,
+          "estado": "Pendiente repuestos",
+          "notas": "Banda y tensor; repuesto en camino",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:07:16.724Z",
+          "updatedAt": "2026-08-14T17:07:16.724Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Miguel Ángel Hernández",
+            "type": "many-to-one",
+            "context": "cliente_asociado",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "VNT-666-Q",
+            "type": "many-to-one",
+            "context": "vehiculo_atendido",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:07:16.724Z",
+              "reason": "Entidad creada exitosamente a partir de la importación de la orden de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0013\n**Resumen:** Orden de trabajo para servicio de cambio de banda de accesorios en vehículo Volkswagen Vento 2017.\n\n**Datos Clave:**\n- **Cliente:** Miguel Ángel Hernández\n- **Vehículo:** Volkswagen Vento 2017 (Placas: VNT-666-Q)\n- **Servicio:** Cambio de banda de accesorios\n- **Mecánico:** Luis Mendoza\n- **Costo Estimado:** $2100\n\n**Estado Actual:** active - Entidad creada correctamente desde importación."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013b-f2d6-76f0-b396-7091d87720df",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0014",
+          "fechaIngreso": "2026-08-05T00:00:00.000Z",
+          "fechaEntrega": "2026-08-06T00:00:00.000Z",
+          "clienteNombre": "Adriana Castaño",
+          "clienteTelefono": "811-555-9988",
+          "vehiculoMarca": "Mazda",
+          "vehiculoModelo": "3 2020",
+          "vehiculoPlacas": "MZ3-777-R",
+          "vehiculoKilometraje": 49800,
+          "tipoServicio": "Cambio de bujías",
+          "mecanicoAsignado": "Andrés Torres",
+          "costoEstimado": 1400,
+          "costoFinal": 1400,
+          "estado": "Entregado",
+          "notas": "Bujías de iridio, mejor rendimiento",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:05:01.142Z",
+          "updatedAt": "2026-08-14T17:05:01.142Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Adriana Castaño",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "MZ3-777-R",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Andrés Torres",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:05:01.142Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0014\n**Resumen:** Orden de trabajo para cambio de bujías en vehículo Mazda 3 2020.\n\n**Datos Clave:**\n- **Cliente:** Adriana Castaño\n- **Vehículo:** Mazda 3 2020 (Placas: MZ3-777-R)\n- **Servicio:** Cambio de bujías\n- **Costo Final:** $1400.00\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013c-029f-7157-bcb9-c30e2dbfe1f3",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0015",
+          "fechaIngreso": "2026-08-06T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Juan Pablo Sánchez",
+          "clienteTelefono": "811-222-7766",
+          "vehiculoMarca": "Ford",
+          "vehiculoModelo": "Ranger 2018",
+          "vehiculoPlacas": "RNG-888-S",
+          "vehiculoKilometraje": 119000,
+          "tipoServicio": "Reparación de caja de transferencia",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 14800,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Trabajo complejo, requiere especialista",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:05:05.183Z",
+          "updatedAt": "2026-08-14T17:05:05.183Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Juan Pablo Sánchez",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "RNG-888-S",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Roberto García",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:05:05.183Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0015\n**Resumen:** Orden de trabajo para reparación de caja de transferencia en vehículo Ford Ranger 2018.\n\n**Datos Clave:**\n- **Cliente:** Juan Pablo Sánchez\n- **Vehículo:** Ford Ranger 2018 (Placas: RNG-888-S)\n- **Servicio:** Reparación de caja de transferencia\n- **Costo Estimado:** $14,800.00\n- **Estado:** En proceso\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013c-076d-738e-9658-8ec5383751da",
+        "entityName": "OrdenTrabajo",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0016",
+          "fechaIngreso": "2026-08-07T00:00:00.000Z",
+          "fechaEntrega": "2026-08-07T00:00:00.000Z",
+          "clienteNombre": "Laura Báez",
+          "clienteTelefono": "811-777-3344",
+          "vehiculoMarca": "Hyundai",
+          "vehiculoModelo": "Accent 2018",
+          "vehiculoPlacas": "ACC-999-T",
+          "vehiculoKilometraje": 85600,
+          "tipoServicio": "Reparación de aire acondicionado",
+          "mecanicoAsignado": "Luis Mendoza",
+          "costoEstimado": 3800,
+          "costoFinal": 4200,
+          "estado": "Entregado",
+          "notas": "Recarga de gas y reemplazo de filtro",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:05:06.412Z",
+          "updatedAt": "2026-08-14T17:05:06.412Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Laura Báez",
+            "type": "many-to-one",
+            "context": "solicitada_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "ACC-999-T",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          },
+          {
+            "targetEntity": "Mecanico",
+            "targetId": "Luis Mendoza",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:05:06.412Z",
+              "reason": "Entidad creada exitosamente a partir de la importación del archivo de órdenes de trabajo."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenTrabajo - OT-2026-0016\n**Resumen:** Orden de trabajo para reparación de aire acondicionado del vehículo Hyundai Accent 2018.\n\n**Datos Clave:**\n- **Cliente:** Laura Báez (Tel: 811-777-3344)\n- **Vehículo:** Hyundai Accent 2018 (Placas: ACC-999-T)\n- **Servicio:** Reparación de aire acondicionado\n- **Costo Final:** $4200.00\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado correctamente desde origen."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013c-3f8c-766a-942e-e1ca92252375",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0017",
+          "fechaIngreso": "2026-08-08T00:00:00.000Z",
+          "fechaEntrega": null,
+          "clienteNombre": "Ricardo Cárdenas",
+          "clienteTelefono": "811-666-1122",
+          "vehiculoMarca": "Kia",
+          "vehiculoModelo": "Sportage 2022",
+          "vehiculoPlacas": "SPT-101-U",
+          "vehiculoKilometraje": 21500,
+          "tipoServicio": "Diagnóstico de Check Engine",
+          "mecanicoAsignado": "Andrés Torres",
+          "costoEstimado": 700,
+          "costoFinal": null,
+          "estado": "En proceso",
+          "notas": "Lectura OBD-II en proceso",
+          "pagado": false
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:05:20.780Z",
+          "updatedAt": "2026-08-14T17:05:20.780Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Vehiculo",
+            "targetId": "SPT-101-U",
+            "type": "many-to-one",
+            "context": "asociado_a",
+            "cardinality_uncertain": false
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:05:20.780Z",
+              "reason": "Registro completo de orden de servicio con datos de cliente, vehículo y servicio; estado de negocio 'En proceso'."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0017\n**Resumen:** Orden de servicio para diagnóstico de Check Engine en vehículo Kia Sportage 2022.\n\n**Datos Clave:**\n- **Cliente:** Ricardo Cárdenas\n- **Vehículo:** Kia Sportage 2022, placas SPT-101-U, 21500 km\n- **Servicio:** Diagnóstico de Check Engine\n- **Costo Estimado:** $700.00\n- **Estado:** En proceso\n\n**Estado Actual:** active - Registro completo de orden de servicio con datos de cliente, vehículo y servicio."
+      }
+    },
+    {
+      "ok": true,
+      "data": {
+        "id": "01a0013c-4eb1-70dd-a22c-c8bf5c5830e4",
+        "entityName": "OrdenServicio",
+        "dynamicProperties": {
+          "idOrden": "OT-2026-0018",
+          "fechaIngreso": "2026-08-09T00:00:00.000Z",
+          "fechaEntrega": "2026-08-10T00:00:00.000Z",
+          "clienteNombre": "Verónica Zúñiga",
+          "clienteTelefono": "811-999-4433",
+          "vehiculoMarca": "Chevrolet",
+          "vehiculoModelo": "Onix 2020",
+          "vehiculoPlacas": "ONX-202-V",
+          "vehiculoKilometraje": 51200,
+          "tipoServicio": "Cambio de líquido de frenos",
+          "mecanicoAsignado": "Roberto García",
+          "costoEstimado": 1100,
+          "costoFinal": 1100,
+          "estado": "Entregado",
+          "notas": "Líquido DOT-4 sintético",
+          "pagado": true
+        },
+        "lifecycle": {
+          "createdAt": "2026-08-14T17:05:24.657Z",
+          "updatedAt": "2026-08-14T17:05:24.657Z",
+          "version": 1
+        },
+        "relations": [
+          {
+            "targetEntity": "Cliente",
+            "targetId": "Verónica Zúñiga",
+            "type": "many-to-one",
+            "context": "solicitado_por",
+            "cardinality_uncertain": true
+          },
+          {
+            "targetEntity": "Mecánico",
+            "targetId": "Roberto García",
+            "type": "many-to-one",
+            "context": "asignado_a",
+            "cardinality_uncertain": true
+          }
+        ],
+        "state": {
+          "current": "active",
+          "statusLog": [
+            {
+              "status": "active",
+              "timestamp": "2026-08-14T17:05:24.657Z",
+              "reason": "Orden de servicio completa con todos los campos obligatorios presentes y datos tipados correctamente."
+            }
+          ]
+        },
+        "markdownDocumentation": "### OrdenServicio - OT-2026-0018\n**Resumen:** Orden de servicio para cambio de líquido de frenos del vehículo Chevrolet Onix 2020.\n\n**Datos Clave:**\n- **Vehículo:** Chevrolet Onix 2020 (Placas: ONX-202-V, Kilometraje: 51200)\n- **Cliente:** Verónica Zúñiga (Tel: 811-999-4433)\n- **Mecánico Asignado:** Roberto García\n- **Costo Final:** $1,100.00 (Pagado: Sí)\n- **Estado:** Entregado\n\n**Estado Actual:** active - Procesado exitosamente a partir del registro de taller."
+      }
+    }
+  ],
+  "failures": []
+}

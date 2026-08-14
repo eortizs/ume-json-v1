@@ -1,0 +1,717 @@
+{
+  "summary": {
+    "file": "samples/taller-mecanico-ordenes.xlsx",
+    "file_hash": "e3215c6fa3de0ea6",
+    "dry_run": true,
+    "total_rows": 18,
+    "processed": 18,
+    "succeeded": 18,
+    "failed": 0,
+    "duration_ms": 5
+  },
+  "entities": [
+    {
+      "id": "dryrun-b60ec70ec4c03fbd2d4498f1",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0001",
+        "fechaIngreso": "2026-07-15T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "José Hernández",
+        "clienteTelefono": "811-234-5678",
+        "vehiculoMarca": "Toyota",
+        "vehiculoModelo": "Corolla 2020",
+        "vehiculoPlacas": "ABC-123-D",
+        "vehiculoKilometraje": 45000,
+        "tipoServicio": "Afinación mayor",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 4500,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Cliente reporta ruido en el motor al frenar",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.559Z",
+        "updatedAt": "2026-08-14T05:12:21.559Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.559Z",
+            "reason": "Fila 1 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 1\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-b9032dd70f7ae64e0de47a97",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0002",
+        "fechaIngreso": "2026-07-18T00:00:00.000Z",
+        "fechaEntrega": "2026-07-22T00:00:00.000Z",
+        "clienteNombre": "María Pérez López",
+        "clienteTelefono": "812-987-6543",
+        "vehiculoMarca": "Nissan",
+        "vehiculoModelo": "Versa 2019",
+        "vehiculoPlacas": "XYZ-987-F",
+        "vehiculoKilometraje": 62300,
+        "tipoServicio": "Cambio de frenos delanteros",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 2800,
+        "costoFinal": 3150.5,
+        "estado": "Entregado",
+        "notas": "Se reemplazaron balatas y discos",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 2 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 2\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-95e3fc7697ce7225955b1de3",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0003",
+        "fechaIngreso": "2026-07-20T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Carlos Ramírez",
+        "clienteTelefono": "811-555-0102",
+        "vehiculoMarca": "Volkswagen",
+        "vehiculoModelo": "Jetta 2018",
+        "vehiculoPlacas": "MTY-456-A",
+        "vehiculoKilometraje": 88700,
+        "tipoServicio": "Diagnóstico electrónico",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 800,
+        "costoFinal": null,
+        "estado": "Pendiente repuestos",
+        "notas": "Falla en sensor MAP; repuesto no disponible en stock",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 3 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 3\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-bbbbc44835bfa77f09f457ed",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0004",
+        "fechaIngreso": "2026-07-22T00:00:00.000Z",
+        "fechaEntrega": "2026-07-23T00:00:00.000Z",
+        "clienteNombre": "Ana Gutiérrez",
+        "clienteTelefono": "811-444-3322",
+        "vehiculoMarca": "Honda",
+        "vehiculoModelo": "Civic 2021",
+        "vehiculoPlacas": "JCV-202-G",
+        "vehiculoKilometraje": 32100,
+        "tipoServicio": "Cambio de aceite y filtros",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 1200,
+        "costoFinal": 1150,
+        "estado": "Entregado",
+        "notas": null,
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 4 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 4\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-a249dc40b666c63aedc23462",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0005",
+        "fechaIngreso": "2026-07-25T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Pedro Martínez",
+        "clienteTelefono": "811-777-8899",
+        "vehiculoMarca": "Ford",
+        "vehiculoModelo": "F-150 2017",
+        "vehiculoPlacas": "FOR-789-H",
+        "vehiculoKilometraje": 145000,
+        "tipoServicio": "Reparación de transmisión",
+        "mecanicoAsignado": "Andrés Torres",
+        "costoEstimado": 18500,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Trabajo mayor, se requieren 5 días adicionales",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 5 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 5\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-5f824ac41c653d00ffa0e6e6",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0006",
+        "fechaIngreso": "2026-07-26T00:00:00.000Z",
+        "fechaEntrega": "2026-07-26T00:00:00.000Z",
+        "clienteNombre": "Lucía Sánchez",
+        "clienteTelefono": "811-222-1100",
+        "vehiculoMarca": "Mazda",
+        "vehiculoModelo": "CX-5 2022",
+        "vehiculoPlacas": "MZD-321-J",
+        "vehiculoKilometraje": 28900,
+        "tipoServicio": "Alineación y balanceo",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 950,
+        "costoFinal": 950,
+        "estado": "Entregado",
+        "notas": "Servicio express mismo día",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 6 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 6\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-3dfcde111e4c1e871277b68d",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0007",
+        "fechaIngreso": "2026-07-28T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Roberto Ñuñez",
+        "clienteTelefono": "811-666-5544",
+        "vehiculoMarca": "Chevrolet",
+        "vehiculoModelo": "Aveo 2016",
+        "vehiculoPlacas": "CHV-654-K",
+        "vehiculoKilometraje": 110500,
+        "tipoServicio": "Reparación de clutch",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 6800,
+        "costoFinal": null,
+        "estado": "Pendiente repuestos",
+        "notas": "Kit de clutch pedido; ETA 3 días",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.560Z",
+        "updatedAt": "2026-08-14T05:12:21.560Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.560Z",
+            "reason": "Fila 7 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 7\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-6484184e81ce6a569727ae9b",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0008",
+        "fechaIngreso": "2026-07-29T00:00:00.000Z",
+        "fechaEntrega": "2026-07-30T00:00:00.000Z",
+        "clienteNombre": "Sofía Mendoza",
+        "clienteTelefono": "811-333-9988",
+        "vehiculoMarca": "Hyundai",
+        "vehiculoModelo": "Tucson 2020",
+        "vehiculoPlacas": "HYU-111-L",
+        "vehiculoKilometraje": 54000,
+        "tipoServicio": "Cambio de batería",
+        "mecanicoAsignado": "Andrés Torres",
+        "costoEstimado": 2400,
+        "costoFinal": 2400,
+        "estado": "Entregado",
+        "notas": "Batería vieja en mal estado",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 8 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 8\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-5973b40a089df5397dd098de",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0009",
+        "fechaIngreso": "2026-07-30T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Diego Vázquez",
+        "clienteTelefono": "811-999-7766",
+        "vehiculoMarca": "Kia",
+        "vehiculoModelo": "Rio 2019",
+        "vehiculoPlacas": "KIA-222-M",
+        "vehiculoKilometraje": 78200,
+        "tipoServicio": "Servicio de frenos completos",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 4200,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Frenos traseros y delanteros",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 9 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 9\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-802339370f7126c5de00297a",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0010",
+        "fechaIngreso": "2026-08-01T00:00:00.000Z",
+        "fechaEntrega": "2026-08-02T00:00:00.000Z",
+        "clienteNombre": "Patricia Ríos",
+        "clienteTelefono": "811-111-2233",
+        "vehiculoMarca": "Toyota",
+        "vehiculoModelo": "Hilux 2021",
+        "vehiculoPlacas": "HIL-333-N",
+        "vehiculoKilometraje": 41000,
+        "tipoServicio": "Revisión pre-viaje",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 1800,
+        "costoFinal": 1950,
+        "estado": "Entregado",
+        "notas": "Cliente viaja a Chihuahua el lunes",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 10 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 10\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-af2f7a2dd0103c278c462ca3",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0011",
+        "fechaIngreso": "2026-08-02T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Fernando Ávila",
+        "clienteTelefono": "811-888-5544",
+        "vehiculoMarca": "Nissan",
+        "vehiculoModelo": "Frontier 2020",
+        "vehiculoPlacas": "FRT-444-O",
+        "vehiculoKilometraje": 96500,
+        "tipoServicio": "Reparación de suspensión",
+        "mecanicoAsignado": "Andrés Torres",
+        "costoEstimado": 5500,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Amortiguadores y resortes",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 11 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 11\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-389a8c54da839f5bc11c7811",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0012",
+        "fechaIngreso": "2026-08-03T00:00:00.000Z",
+        "fechaEntrega": "2026-08-03T00:00:00.000Z",
+        "clienteNombre": "Gabriela Ortega",
+        "clienteTelefono": "811-444-6677",
+        "vehiculoMarca": "Honda",
+        "vehiculoModelo": "CR-V 2019",
+        "vehiculoPlacas": "CRV-555-P",
+        "vehiculoKilometraje": 67100,
+        "tipoServicio": "Limpieza de inyectores",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 1600,
+        "costoFinal": 1600,
+        "estado": "Entregado",
+        "notas": null,
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 12 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 12\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-d7c4630be30d9fd3c30fb3ff",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0013",
+        "fechaIngreso": "2026-08-04T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Miguel Ángel Hernández",
+        "clienteTelefono": "811-333-4455",
+        "vehiculoMarca": "Volkswagen",
+        "vehiculoModelo": "Vento 2017",
+        "vehiculoPlacas": "VNT-666-Q",
+        "vehiculoKilometraje": 132400,
+        "tipoServicio": "Cambio de banda de accesorios",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 2100,
+        "costoFinal": null,
+        "estado": "Pendiente repuestos",
+        "notas": "Banda y tensor; repuesto en camino",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 13 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 13\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-22204c5f44ad1b53046ee10a",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0014",
+        "fechaIngreso": "2026-08-05T00:00:00.000Z",
+        "fechaEntrega": "2026-08-06T00:00:00.000Z",
+        "clienteNombre": "Adriana Castaño",
+        "clienteTelefono": "811-555-9988",
+        "vehiculoMarca": "Mazda",
+        "vehiculoModelo": "3 2020",
+        "vehiculoPlacas": "MZ3-777-R",
+        "vehiculoKilometraje": 49800,
+        "tipoServicio": "Cambio de bujías",
+        "mecanicoAsignado": "Andrés Torres",
+        "costoEstimado": 1400,
+        "costoFinal": 1400,
+        "estado": "Entregado",
+        "notas": "Bujías de iridio, mejor rendimiento",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 14 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 14\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-19105ec88b81926d4363a281",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0015",
+        "fechaIngreso": "2026-08-06T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Juan Pablo Sánchez",
+        "clienteTelefono": "811-222-7766",
+        "vehiculoMarca": "Ford",
+        "vehiculoModelo": "Ranger 2018",
+        "vehiculoPlacas": "RNG-888-S",
+        "vehiculoKilometraje": 119000,
+        "tipoServicio": "Reparación de caja de transferencia",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 14800,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Trabajo complejo, requiere especialista",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.561Z",
+        "updatedAt": "2026-08-14T05:12:21.561Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.561Z",
+            "reason": "Fila 15 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 15\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-6f2bd191df3952cf5625d36a",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0016",
+        "fechaIngreso": "2026-08-07T00:00:00.000Z",
+        "fechaEntrega": "2026-08-07T00:00:00.000Z",
+        "clienteNombre": "Laura Báez",
+        "clienteTelefono": "811-777-3344",
+        "vehiculoMarca": "Hyundai",
+        "vehiculoModelo": "Accent 2018",
+        "vehiculoPlacas": "ACC-999-T",
+        "vehiculoKilometraje": 85600,
+        "tipoServicio": "Reparación de aire acondicionado",
+        "mecanicoAsignado": "Luis Mendoza",
+        "costoEstimado": 3800,
+        "costoFinal": 4200,
+        "estado": "Entregado",
+        "notas": "Recarga de gas y reemplazo de filtro",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.562Z",
+        "updatedAt": "2026-08-14T05:12:21.562Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.562Z",
+            "reason": "Fila 16 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 16\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-96f77f5bbc8c1ff24366967b",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0017",
+        "fechaIngreso": "2026-08-08T00:00:00.000Z",
+        "fechaEntrega": null,
+        "clienteNombre": "Ricardo Cárdenas",
+        "clienteTelefono": "811-666-1122",
+        "vehiculoMarca": "Kia",
+        "vehiculoModelo": "Sportage 2022",
+        "vehiculoPlacas": "SPT-101-U",
+        "vehiculoKilometraje": 21500,
+        "tipoServicio": "Diagnóstico de Check Engine",
+        "mecanicoAsignado": "Andrés Torres",
+        "costoEstimado": 700,
+        "costoFinal": null,
+        "estado": "En proceso",
+        "notas": "Lectura OBD-II en proceso",
+        "pagado": false
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.562Z",
+        "updatedAt": "2026-08-14T05:12:21.562Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.562Z",
+            "reason": "Fila 17 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 17\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    },
+    {
+      "id": "dryrun-f101c40ca2ee3152dc953134",
+      "entityName": "RegistroImportado",
+      "dynamicProperties": {
+        "idOrden": "OT-2026-0018",
+        "fechaIngreso": "2026-08-09T00:00:00.000Z",
+        "fechaEntrega": "2026-08-10T00:00:00.000Z",
+        "clienteNombre": "Verónica Zúñiga",
+        "clienteTelefono": "811-999-4433",
+        "vehiculoMarca": "Chevrolet",
+        "vehiculoModelo": "Onix 2020",
+        "vehiculoPlacas": "ONX-202-V",
+        "vehiculoKilometraje": 51200,
+        "tipoServicio": "Cambio de líquido de frenos",
+        "mecanicoAsignado": "Roberto García",
+        "costoEstimado": 1100,
+        "costoFinal": 1100,
+        "estado": "Entregado",
+        "notas": "Líquido DOT-4 sintético",
+        "pagado": true
+      },
+      "lifecycle": {
+        "createdAt": "2026-08-14T05:12:21.562Z",
+        "updatedAt": "2026-08-14T05:12:21.562Z",
+        "version": 1
+      },
+      "relations": [],
+      "state": {
+        "current": "active",
+        "statusLog": [
+          {
+            "status": "active",
+            "timestamp": "2026-08-14T05:12:21.562Z",
+            "reason": "Fila 18 procesada en modo --dry-run (sin LLM)."
+          }
+        ]
+      },
+      "markdownDocumentation": "### RegistroImportado - Fila 18\n**Resumen:** Transformación local determinista para validación.\n\n**Datos Clave:**\n- *Columnas*: 16\n- *Modo*: dry-run"
+    }
+  ],
+  "failures": []
+}

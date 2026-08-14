@@ -28,8 +28,9 @@ loadEnv();
 // ============================================================
 // Config
 // ============================================================
-const FINALIZE_URL  = process.env.UMEJSON_FINALIZE_URL || 'http://localhost:8000/api/v1/ume-json/finalize';
+const FINALIZE_URL  = process.env.UMEJSON_FINALIZE_URL || 'http://localhost:8001/api/v1/ume-json/finalize';
 const FINALIZE_KEY  = process.env.UMEJSON_FINALIZE_KEY || '';
+const LLM_BASE_URL  = process.env.LLM_BASE_URL         || 'https://api.openai.com/v1';
 const LLM_API_KEY   = process.env.LLM_API_KEY          || '';
 const LLM_MODEL     = process.env.LLM_MODEL            || 'gpt-4o-mini';
 
@@ -44,15 +45,30 @@ const limit = pLimit(CONCURRENCY);
 // CLI
 // ============================================================
 const args = argv.slice(2);
-const flags = new Set(args.filter(a => a.startsWith('--')));
+
+// Acepta tanto `--flag=value` como `--flag value`
+function getFlag(name) {
+  // Sintaxis con `=`
+  const eqArg = args.find(a => a.startsWith(`--${name}=`));
+  if (eqArg) return eqArg.split('=').slice(1).join('='); // soporta paths con `=`
+
+  // Sintaxis con espacio (lee el siguiente argumento)
+  const idx = args.indexOf(`--${name}`);
+  if (idx !== -1 && idx + 1 < args.length) {
+    const next = args[idx + 1];
+    if (!next.startsWith('--')) return next;
+  }
+  return null;
+}
+
 const positional = args.filter(a => !a.startsWith('--'));
 
-const dryRun   = flags.has('--dry-run');
-const jsonOnly = flags.has('--json-only');
-const mdOnly   = flags.has('--md-only');
-const limitArg = parseInt([...flags].find(f => f.startsWith('--limit='))?.split('=')[1] || '0', 10);
-const outArg   = [...flags].find(f => f.startsWith('--out='))?.split('=')[1];
-const mdArg    = [...flags].find(f => f.startsWith('--md-out='))?.split('=')[1]
+const dryRun   = args.includes('--dry-run');
+const jsonOnly = args.includes('--json-only');
+const mdOnly   = args.includes('--md-only');
+const limitArg = parseInt(getFlag('limit') || '0', 10);
+const outArg   = getFlag('out');
+const mdArg    = getFlag('md-out')
                  || (outArg ? outArg.replace(/\.json$/, '.summary.md') : null);
 
 const filePath = positional[0];
@@ -119,7 +135,9 @@ async function parseXlsx(path) {
 // 2. Transformar fila → umeJSON
 // ============================================================
 async function llmComplete({ system, user }) {
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+  // OpenAI-compatible (OpenAI, OpenRouter, Groq, etc.). Override base URL con LLM_BASE_URL.
+  const url = `${LLM_BASE_URL.replace(/\/$/, '')}/chat/completions`;
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -196,7 +214,17 @@ async function rowToUmeJson(row, idx) {
   try {
     return JSON.parse(text);
   } catch (e) {
-    throw new Error(`LLM devolvió JSON inválido: ${e.message}`);
+    // Fallback: algunos modelos (deepseek, llama) envuelven el JSON en ```json fences
+    // a pesar de response_format: json_object. Limpiamos y reintentamos.
+    const cleaned = text
+      .replace(/^```(?:json)?\s*/i, '')
+      .replace(/\s*```\s*$/i, '')
+      .trim();
+    try {
+      return JSON.parse(cleaned);
+    } catch (e2) {
+      throw new Error(`LLM devolvió JSON inválido: ${e.message}`);
+    }
   }
 }
 
