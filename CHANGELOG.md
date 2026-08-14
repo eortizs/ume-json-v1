@@ -2,6 +2,36 @@
 
 Todas las modificaciones relevantes a este proyecto se documentan aquí.
 
+Para documentación detallada ver:
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — diseño, contratos, decisiones
+- [docs/RUNBOOK.md](docs/RUNBOOK.md) — operación, troubleshooting
+- [docs/EVIDENCE.md](docs/EVIDENCE.md) — runs reales, métricas
+- [docs/POSTMORTEM.md](docs/POSTMORTEM.md) — bugs y lecciones
+
+## v0.0.2 — 2026-08-14 · Documentation kit
+
+**Sin cambios de código.** Solo documentación.
+
+**Novedades:**
+
+- `docs/ARCHITECTURE.md` (13 KB) — diseño sistema, componentes, contratos, decisiones, límites, dependencias
+- `docs/RUNBOOK.md` (7 KB) — arranque, monitoreo, troubleshooting, rotación de keys, backup
+- `docs/EVIDENCE.md` (6 KB) — runs reales del taller mecánico, métricas, validación
+- `docs/POSTMORTEM.md` (7 KB) — 3 bugs del v0.0.1 (JSON fences, pipe a tail, huérfanos) + 1 issue operacional (gh CLI auth)
+- `README.md` actualizado — executive summary + TOC que apunta a docs/
+
+**No se cambiaron:**
+- `process-xlsx.mjs` — mismo comportamiento
+- `finalize-api/server.mjs` — mismo comportamiento
+- `samples/output-entities-real.json` — mismo contenido
+- Tags — sigue siendo `v0.0.1` la última release
+
+**Pendientes para v0.1.0:** (sin cambios desde v0.0.1)
+- Modo `--deterministic` + `--hybrid`
+- Soporte CSV/JSON
+- Idempotencia
+- Tests Jest
+
 ## v0.0.1 — 2026-08-14 · finalize-api MVP + sample XLSX + real-mode pipeline
 
 **Pipeline XLSX → umeJSON end-to-end validado en modo real.**
