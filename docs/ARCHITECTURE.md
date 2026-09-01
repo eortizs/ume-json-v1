@@ -325,6 +325,7 @@ resto de las filas
 | **LLM agnóstico via `LLM_BASE_URL`** | lock-in a OpenAI | Permite OpenRouter / Groq / Gemini sin tocar código |
 | **Concurrencia 5** | 1 / 10 / 20 | Balance throughput vs rate-limits |
 | **Outputs en JSON + Markdown** | solo JSON | Markdown legible directo para chat / WhatsApp |
+| **Historial en journal separado** | historial embebido en el documento | Documento acotado (límite 100 KB), sin bloat MVCC, analíticas SQL sobre eventos, GDPR — ver [PERSISTENCE.md](./PERSISTENCE.md) |
 
 ---
 
@@ -360,3 +361,27 @@ resto de las filas
 
 Ver [RUNBOOK.md](./RUNBOOK.md) para arrancar, monitorear, y matar los
 procesos. Si tenés un incidente, ver [POSTMORTEM.md](./POSTMORTEM.md) primero.
+
+---
+
+## 9. Persistencia
+
+Las entidades se persisten en PostgreSQL con el modelo **head + journal**
+(roadmap v0.2.0, diseño cerrado):
+
+- `entities` — una fila por entidad; `doc` (jsonb) contiene el umeJSON
+  completo (estado vigente). Espejo relacional de `entityName`, `version`
+  y timestamps para índices y bloqueo optimista.
+- `entity_events` — bitácora append-only con el historial de comportamiento,
+  con secuencia monotónica por entidad, actor y bitemporalidad
+  (`occurred_at` / `recorded_at`).
+
+Regla central: el historial nunca se embebe en el documento. El documento
+representa el estado vigente; la bitácora representa lo que ocurrió en el
+tiempo. `state.statusLog` (máx. 20 entradas) es una proyección de solo
+lectura de la bitácora, que es la fuente de verdad única del historial.
+
+El DDL normativo, el protocolo de escritura transaccional, las invariantes
+y los tipos de evento están en [PERSISTENCE.md](./PERSISTENCE.md). Ese
+documento está escrito en estilo declarativo consumible por humanos y por
+cualquier agente IA, independiente del framework o proveedor.

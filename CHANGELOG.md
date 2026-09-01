@@ -8,6 +8,38 @@ Para documentación detallada ver:
 - [docs/EVIDENCE.md](docs/EVIDENCE.md) — runs reales, métricas
 - [docs/POSTMORTEM.md](docs/POSTMORTEM.md) — bugs y lecciones
 
+## Unreleased — 2026-09-01 · Persistencia: modelo head + journal (documentación)
+
+**Sin cambios de código.** Diseño de persistencia cerrado y documentado.
+La bitácora de comportamiento vive en una tabla append-only separada; el
+documento umeJSON queda como estado vigente con esquema estable.
+
+**Novedades:**
+
+- `docs/PERSISTENCE.md` (nuevo) — fuente de verdad del diseño de persistencia:
+  - Modelo **head + journal**: `entities` (documento jsonb, una fila por
+    entidad) + `entity_events` (bitácora append-only con `seq` monotónico).
+  - DDL normativo con índices y notas de diseño.
+  - Protocolo de escritura transaccional con bloqueo optimista (`version`).
+  - 9 invariantes normativas (historial nunca embebido, append-only, solo
+    el servidor escribe la bitácora, bitemporalidad `occurred_at`/
+    `recorded_at`, actor, proyección de `statusLog`).
+  - Catálogo cerrado de tipos de evento + ejemplo canónico.
+  - Escrito en estilo declarativo consumible por humanos y cualquier
+    agente IA, independiente de framework o proveedor.
+- `docs/ARCHITECTURE.md` — nueva sección 9 (Persistencia) y fila en la tabla
+  de decisiones: historial en journal separado vs. embebido.
+- `process-xlsx/umejson-spec.md` — regla de acotamiento: `state.statusLog`
+  máximo 20 entradas, proyección de solo lectura de la bitácora.
+- `README.md` — PERSISTENCE.md en el índice de documentación; ítem de
+  roadmap v0.2.0 enlazado al diseño.
+
+**No se cambiaron:**
+
+- `finalize-api/server.mjs` — mismo comportamiento
+- `process-table.mjs` — mismo comportamiento
+- JSON Schema del `/finalize` — sin cambios estructurales
+
 ## v0.1.0 — 2026-08-14 · Multi-format support (XLSX, CSV, TSV, JSON)
 
 **Soportada la lectura de 4 formatos de tabla.** El script se renombra

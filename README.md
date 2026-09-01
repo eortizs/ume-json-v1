@@ -88,6 +88,7 @@ filas sin colisiones.
 **Documentación detallada:**
 
 - **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** — diseño, contratos, decisiones
+- **[docs/PERSISTENCE.md](./docs/PERSISTENCE.md)** — modelo head + journal en PostgreSQL: DDL, protocolo de escritura, invariantes
 - **[docs/RUNBOOK.md](./docs/RUNBOOK.md)** — operación, troubleshooting, rotación de keys
 - **[docs/EVIDENCE.md](./docs/EVIDENCE.md)** — runs reales, métricas, validación
 - **[docs/POSTMORTEM.md](./docs/POSTMORTEM.md)** — bugs encontrados y lecciones
@@ -306,7 +307,7 @@ Response 200:
 
 ### v0.2.0 — Hardening
 
-- [ ] Persistir las entities a PostgreSQL (no solo devolverlas)
+- [ ] Persistir las entities a PostgreSQL (no solo devolverlas) — diseño cerrado en [docs/PERSISTENCE.md](./docs/PERSISTENCE.md)
 - [ ] Autenticación JWT con refresh tokens (no solo Bearer estático)
 - [ ] Rate-limit con Redis (multi-instancia)
 - [ ] CORS whitelist

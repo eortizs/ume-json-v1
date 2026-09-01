@@ -92,6 +92,8 @@ Por cada referencia externa detectada, construir un objeto con esta forma:
 
 El primer elemento de `statusLog` describe el motivo de la asignación.
 
+**Acotamiento:** `statusLog` contiene un máximo de 20 entradas. Es una proyección de solo lectura del historial de comportamiento, cuya fuente de verdad es la bitácora persistida (`entity_events`); el historial completo nunca se embebe en el documento (ver `docs/PERSISTENCE.md`).
+
 ### 5. `markdownDocumentation`
 
 Ficha técnica ejecutiva en formato Markdown:
@@ -210,7 +212,7 @@ Códigos sugeridos: `INPUT_UNREADABLE`, `EMPTY_INPUT`, `AMBIGUOUS_ENTITY`, `INVA
 | `lifecycle.version` | int | sí | inicia en `1` |
 | `relations` | array | no | `[]` si no hay relaciones |
 | `state.current` | enum | sí | `active` \| `draft` \| `validation_required` |
-| `state.statusLog` | array | sí | mínimo 1 elemento |
+| `state.statusLog` | array | sí | 1 a 20 elementos; proyección de la bitácora |
 | `markdownDocumentation` | string | sí | Markdown estructurado |
 | `__diagnostic` | object | no | solo presente en errores |
 
@@ -222,5 +224,6 @@ Códigos sugeridos: `INPUT_UNREADABLE`, `EMPTY_INPUT`, `AMBIGUOUS_ENTITY`, `INVA
 - **`dynamicProperties`** debe tener todas sus keys en `camelCase`.
 - **`lifecycle.version`** es siempre un entero positivo que inicia en `1`.
 - **`state.current`** solo puede tomar uno de tres valores: `active`, `draft`, `validation_required`.
+- **`state.statusLog`** contiene máximo 20 elementos. Ninguna colección del documento crece de forma no acotada; el historial completo vive en la bitácora de la base de datos (`docs/PERSISTENCE.md`).
 - **`relations[].type`** solo puede tomar valores del conjunto: `one-to-one`, `one-to-many`, `many-to-one`, `many-to-many`.
 - **Identificadores (`id*`, `codigo*`, `folio*`, etc.)** que contengan caracteres no numéricos deben permanecer como `string`.
